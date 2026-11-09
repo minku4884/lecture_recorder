@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>강의 자동 녹화 · 사용 설명서</title>
+  <style>
+    *{box-sizing:border-box}body{margin:0;background:#f5f7fb;color:#20314b;font-family:"Malgun Gothic",Arial,sans-serif;line-height:1.7}
+    main{max-width:930px;margin:50px auto;padding:0 24px 60px}.eyebrow{letter-spacing:.13em;font-size:12px;font-weight:bold;color:#245be6}
+    h1{font-size:36px;line-height:1.3;margin:12px 0}h2{font-size:22px;margin:0 0 13px}p{margin:10px 0;color:#51617b}
+    .card{background:white;border:1px solid #dce3f0;border-radius:16px;padding:26px;margin-top:22px}ol{padding-left:24px;margin:10px 0}li{padding-left:5px;margin-bottom:11px}
+    code{background:#edf2fc;border-radius:5px;padding:3px 7px;color:#245be6}a{color:#245be6}b{color:#20314b}.note{background:#eaf0ff;border-left:4px solid #245be6;padding:15px 18px;border-radius:5px;margin-top:16px}
+    .row{display:grid;grid-template-columns:1fr 1fr;gap:20px}.small{font-size:13px}footer{font-size:13px;color:#68748a;margin-top:20px}@media(max-width:650px){.row{grid-template-columns:1fr}h1{font-size:29px}main{margin-top:30px}}
+  </style>
+</head>
+<body><main>
+  <div class="eyebrow">LECTURE RECORDER · WINDOWS</div>
+  <h1>목차 순서대로,<br>강의별 파일로 저장하기</h1>
+  <p>첨부한 강의 화면의 목차와 Plyr 영상 구조에 맞춘 Python 프로그램입니다.<br>강의를 선택하면 영상 준비, OBS 녹화, 파일 정리를 자동으로 진행합니다. 목차가 접혀도 다음 항목을 선택하며, 영상이 없는 읽기 자료는 자동으로 건너뜁니다.</p>
+  <section class="card"><h2>처음 한 번 설치</h2>
+    <ol>
+      <li>ZIP을 <b>완전히 압축 해제</b>하세요. 짧은 경로 <code>C:\LectureRecorder</code>를 권장합니다.</li>
+      <li><a href="https://www.python.org/downloads/windows/">Python</a> 3.10 이상과 <a href="https://obsproject.com/download">OBS Studio</a> 28 이상을 설치하세요. Python 설치 시 <b>Add python.exe to PATH</b>를 선택합니다.</li>
+      <li><code>설치.bat</code>를 더블클릭합니다. 필요한 Python 패키지와 예비 브라우저를 설치합니다.</li>
+      <li>OBS를 실행하고 <b>도구 → WebSocket 서버 설정</b>에서 서버를 활성화합니다. 포트 <code>4455</code>와 서버 비밀번호를 확인하세요.</li>
+      <li>MP4로 저장하려면 OBS <b>설정 → 출력 → 녹화 형식</b>에서 하이브리드 MP4 또는 MP4를 선택하세요.</li>
+    </ol>
+  </section>
+  <section class="card"><h2>프로그램 실행</h2>
+    <ol>
+      <li><code>실행.bat</code>를 열고 <b>실제 강의 주소</b>, 저장 폴더, OBS 비밀번호를 입력합니다. <b>OBS 연결 테스트</b>로 연결을 확인하세요.</li>
+      <li><b>1. 브라우저 열기</b>를 누릅니다. 열린 전용 브라우저에서 직접 로그인한 뒤 왼쪽 목차가 보이는 화면으로 이동하세요.</li>
+      <li><b>2. 강의 목록 읽기</b>를 누르고 녹화할 강의를 선택합니다. 대목차를 누르면 소목차를 한꺼번에 선택할 수 있습니다.</li>
+      <li><b>3. 선택 강의 녹화</b>를 누릅니다. 녹화 중 설정 창은 최소화됩니다. 전체 처리가 끝나면 다시 나타납니다.</li>
+    </ol>
+    <div class="note"><b>먼저 짧은 강의 하나를 녹화해 화면과 소리를 확인하세요.</b><br>파일이 정상이라면 전체 선택으로 실행하면 됩니다. 사이트 주소는 스크린샷에 없어 직접 입력하도록 비워 두었습니다.</div>
+  </section>
+  <div class="row">
+    <section class="card"><h2>이어서는 어떻게?</h2><p><b>완료 파일 확인 후 이어서 녹화</b>를 켜면 실제 파일이 있는 완료 강의만 건너뜁니다. 사이트 수강 완료 체크는 모두 무시하고 녹화 대상에 포함합니다.</p><p>중지한 강의는 <code>__INCOMPLETE</code> 파일로 보관하고 다음 실행에서 0초부터 다시 녹화합니다.</p></section>
+    <section class="card"><h2>OBS 자동 구성</h2><p>자동 구성 옵션은 <b>기본 모니터와 기본 PC 소리</b>를 녹화합니다. 마이크는 제외하며 종료 후 기존 OBS 장면과 음소거 상태를 복원합니다.</p><p>듀얼 모니터나 별도 오디오 장치는 OBS에서 직접 장면을 구성하고 자동 구성 옵션을 꺼서 사용하세요.</p></section>
+  </div>
+  <section class="card"><h2>파일과 도움말</h2>
+    <p>녹화 파일은 <code>recordings</code> 아래 대목차별로 저장됩니다. 파일명에는 강의 순번, 제목, 고유 ID가 들어갑니다. 기존 파일은 덮어쓰지 않습니다.</p>
+    <p>OBS가 MKV로 설정되어 있으면 MKV로 저장합니다. FFmpeg가 있으면 MP4를 함께 만들 수 있고 원본도 보관합니다. 상세 설정과 문제 해결은 같은 폴더의 <a href="README_KO.md">README_KO.md</a>를 확인하세요.</p>
+    <p class="small">코드와 설치 스크립트를 모두 포함한 Python 프로그램이며 독립 실행 EXE는 아닙니다. 모의 강의 페이지와 모의 OBS 서버로 핵심 동작을 검증했습니다. 실제 계정 로그인, Windows 캡처 장치와 녹화 소리는 사용자의 PC에서 확인해야 합니다.</p>
+  </section>
+  <footer>녹화 중에는 해당 브라우저와 OBS 녹화 버튼을 직접 조작하지 말고, 종료할 때 프로그램의 중지 버튼을 사용하세요.</footer>
+</main></body></html>
